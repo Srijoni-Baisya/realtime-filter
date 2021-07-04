@@ -1,5 +1,8 @@
+var noseX = 0;
+var noseY = 0;
 function preload(){
     //add clown img link
+    img = loadImage("https://i.postimg.cc/s2gQQFD0/clown-Nose.png");
 }
 
 function setup(){
@@ -26,6 +29,8 @@ function modelLoaded(){
 function gotPoses(results){
     if(results.length > 0){
         console.log(results);
+        noseX = results[0].pose.nose.x;
+        noseY = results[0].pose.nose.y;
         console.log("Nose x = "+ results[0].pose.nose.x);
         console.log("Nose y = "+ results[0].pose.nose.y);
     }
@@ -34,6 +39,14 @@ function gotPoses(results){
 function draw(){
    //part2- load webcam on canvas
    image(video,0,0,400,400);
+
+   //draw red circle on nose
+   //fill(255,0,0);
+   //stroke(2455,0,0);
+   //circle(noseX,noseY,20);
+
+   //place clown nose img on nose
+   image(img,noseX-15,noseY-10,30,30);
 }
 
 function take_snapshot(){
